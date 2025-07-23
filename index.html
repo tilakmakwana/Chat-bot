@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simulated AI Chatbot</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f2f2f2; margin: 0; padding: 20px; }
+    h2 { text-align: center; }
+    #chat { border: 1px solid #ccc; padding: 10px; height: 300px; overflow-y: auto; background: #fff; margin-bottom: 10px; }
+    .message { margin: 5px 0; padding: 6px 10px; border-radius: 6px; max-width: 80%; }
+    .user { background: #cce5ff; align-self: flex-end; text-align: right; }
+    .bot { background: #d4edda; align-self: flex-start; text-align: left; }
+    #input-area { display: flex; gap: 10px; }
+    #input { flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+    button { padding: 10px 15px; border: none; background-color: #007bff; color: white; border-radius: 5px; cursor: pointer; }
+    button:hover { background-color: #0056b3; }
+  </style>
+</head>
+<body>
+  <h2>🤖 Simulated AI Chatbot</h2>
+  <div id="chat"></div>
+  <div id="input-area">
+    <input type="text" id="input" placeholder="Type your message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    function addMessage(role, text) {
+      const chat = document.getElementById("chat");
+      const msgDiv = document.createElement("div");
+      msgDiv.className = "message " + role;
+      msgDiv.textContent = text;
+      chat.appendChild(msgDiv);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("input");
+      const userText = input.value.trim();
+      if (!userText) return;
+      addMessage("user", "🧑 " + userText);
+      input.value = "";
+      setTimeout(() => {
+        addMessage("bot", "🤖 Simulated reply to: " + userText);
+      }, 800);
+    }
+  </script>
+</body>
+</html>
